@@ -40,6 +40,14 @@ class Constant: NSObject, SDWebImageManagerDelegate {
         }
         return 0
     }
+    
+     func getCurrentShortDate() -> String {
+         let todaysDate = Date()
+         let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+         let DateInFormat = dateFormatter.string(from: todaysDate)
+        return DateInFormat
+    }
 }
 
 enum ShadowLocation: String {

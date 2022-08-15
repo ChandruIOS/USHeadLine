@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct NewsModel : Codable {
     let status : String?
@@ -42,6 +43,7 @@ class Articles : Codable {
     let content : String?
     var likes : Int?
     var comments: Int?
+    var newsImages = UIImage()
 
     enum CodingKeys: String, CodingKey {
 

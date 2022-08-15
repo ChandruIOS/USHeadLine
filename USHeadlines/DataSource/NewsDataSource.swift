@@ -30,7 +30,7 @@ class NewsDataSource: GenericDataSource<Articles>,
         let dict = data.value[indexPath.row]
         guard let fileUrl = URL(string: Constant.checkNull(dict.urlToImage))else {return UITableViewCell()}
         cell.newsImgView.layer.cornerRadius = 10.0
-        cell.newsImgView.image = self.downsample(imageAt: fileUrl, to: cell.newsImgView.bounds.size)
+        cell.newsImgView.image = dict.newsImages
         cell.newsTitleLbl.text = Constant.checkNull(dict.title)
         cell.authorNameLbl.text = "-\(Constant.checkNull(dict.author))"
         cell.newsDescriptionLbl.text = Constant.checkNull(dict.description)
@@ -47,33 +47,5 @@ class NewsDataSource: GenericDataSource<Articles>,
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
-    }
-    // MARK: - DownSampling Image Size Reducing Function
-    func downsample(imageAt imageURL: URL,
-                    to pointSize: CGSize,
-                    scale: CGFloat = UIScreen.main.scale) -> UIImage? {
-
-        // Create an CGImageSource that represent an image
-        let imageSourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary
-
-        guard let imageSource = CGImageSourceCreateWithURL(imageURL as CFURL, imageSourceOptions)else {
-            return nil
-        }
-        // Calculate the desired dimension
-        let maxDimensionInPixels = max(pointSize.width, pointSize.height) * scale
-        
-        // Perform downsampling
-        let downsampleOptions = [
-            kCGImageSourceCreateThumbnailFromImageAlways: true,
-            kCGImageSourceShouldCacheImmediately: true,
-            kCGImageSourceCreateThumbnailWithTransform: true,
-            kCGImageSourceThumbnailMaxPixelSize: maxDimensionInPixels
-        ] as CFDictionary
-        guard let downsampledImage = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, downsampleOptions) else {
-            return nil
-        }
-        
-        // Return the downsampled image as UIImage
-        return UIImage(cgImage: downsampledImage)
     }
 }
