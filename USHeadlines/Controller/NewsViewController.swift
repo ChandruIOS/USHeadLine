@@ -40,17 +40,6 @@ class NewsViewController: UIViewController {
         self.newTableView.dataSource = dataSource
         self.dataSource.delegate = self
         self.newsapiCall()
-        self.viewModel.reloadData = { [weak self] in
-            self?.reloadData()
-        }
-    }
-//   MARK: - Once like and Comment Data get after Call this func
-    func reloadData() {
-        UIView.performWithoutAnimation {
-            self.newTableView.beginUpdates()
-            self.newTableView.reloadData()
-            self.newTableView.endUpdates()
-        }
     }
     // MARK: - All NEWS Api Call
     func newsapiCall() {

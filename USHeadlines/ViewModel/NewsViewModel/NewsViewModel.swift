@@ -12,7 +12,6 @@ class NewsViewModel: NSObject {
     
     weak var dataSource: GenericDataSource<Articles>?
     var viewController = UIViewController()
-    var reloadData: (() -> ())?
     init(dataSource: GenericDataSource<Articles>, vcs: UIViewController) {
         self.dataSource = dataSource
         self.viewController = vcs
