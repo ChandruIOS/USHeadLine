@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
 protocol NewsProtocol: AnyObject {
     func didTapNews(Article: Articles)
@@ -28,9 +29,14 @@ class NewsDataSource: GenericDataSource<Articles>,
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell",
                                                  for: indexPath) as! NewsTableViewCell
         let dict = data.value[indexPath.row]
-        guard let fileUrl = URL(string: Constant.checkNull(dict.urlToImage))else {return UITableViewCell()}
         cell.newsImgView.layer.cornerRadius = 10.0
-        cell.newsImgView.image = dict.newsImages
+        if dict.newsImages == nil{
+            cell.newsImgView.sd_imageIndicator = SDWebImageActivityIndicator.white
+            cell.newsImgView.sd_imageTransition = SDWebImageTransition.fade
+            cell.newsImgView.image = UIImage(named: "placeHolder")
+        }else{
+            cell.newsImgView.image = dict.newsImages
+        }
         cell.newsTitleLbl.text = Constant.checkNull(dict.title)
         cell.authorNameLbl.text = "-\(Constant.checkNull(dict.author))"
         cell.newsDescriptionLbl.text = Constant.checkNull(dict.description)
@@ -49,3 +55,4 @@ class NewsDataSource: GenericDataSource<Articles>,
         return UITableView.automaticDimension
     }
 }
+

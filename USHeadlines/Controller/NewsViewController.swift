@@ -12,7 +12,11 @@ class NewsViewController: UIViewController {
 
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerLbl: UILabel!
-    @IBOutlet weak var newTableView: UITableView!
+    @IBOutlet weak var newTableView: UITableView! {
+        didSet{
+            newTableView.backgroundColor = UIColor.black
+        }
+    }
     
     let dataSource = NewsDataSource()
     lazy var viewModel : NewsViewModel = {

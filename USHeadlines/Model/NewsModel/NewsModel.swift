@@ -43,7 +43,7 @@ class Articles : Codable {
     let content : String?
     var likes : Int?
     var comments: Int?
-    var newsImages = UIImage()
+    var newsImages: UIImage?
 
     enum CodingKeys: String, CodingKey {
 

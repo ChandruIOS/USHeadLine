@@ -60,7 +60,7 @@ extension UIViewController: NVActivityIndicatorViewable  {
     func showloader(_ show : Bool) {
         
         let size = CGSize(width: 60, height: 60)
-        NVActivityIndicatorView.DEFAULT_COLOR = UIColor.green
+        NVActivityIndicatorView.DEFAULT_COLOR = UIColor.white
         if show {
             self.startAnimating(size, message: "", type: .ballSpinFadeLoader, fadeInAnimation: nil)
         }else{

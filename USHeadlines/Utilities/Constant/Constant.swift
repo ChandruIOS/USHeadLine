@@ -18,7 +18,7 @@ class Constant: NSObject, SDWebImageManagerDelegate {
     
     // Load Image form URL
     
-    func loadImageFromUrl(urlString: String, placeholderImage: String = "", imageView: UIImageView) {
+    func loadImageFromUrl(urlString: String, placeholderImage: String = "placeHolder", imageView: UIImageView) {
         
         let transformer = SDImageResizingTransformer(size: CGSize(width: imageView.bounds.width, height: imageView.bounds.height), scaleMode: .fill)
         imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
